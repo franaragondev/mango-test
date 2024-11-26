@@ -1,0 +1,20 @@
+{
+    "name": "mango-test",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@types/node": "^22.10.0",
+        "@types/react": "^18.3.12",
+        "next": "^15.0.3",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "typescript": "^5.7.2"
+    }
+}
