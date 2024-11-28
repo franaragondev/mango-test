@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "esnext",
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "strict": true,
     "baseUrl": ".",
     "paths": {
@@ -41,11 +41,11 @@
     "**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    "tests/**/*.ts",        
-    "tests/**/*.tsx"         
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules",
-    ".next"            
+    ".next"
   ]
 }
