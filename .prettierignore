@@ -1,0 +1,12 @@
+node_modules/
+build/
+dist/
+.next/
+*.min.js
+*.bundle.js
+*.map
+coverage/
+*.log
+.DS_Store
+*.tsbuildinfo
+.vscode/
