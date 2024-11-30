@@ -119,8 +119,6 @@ const Range = ({ min, max, values }: RangeProps) => {
   // Handle mouse down for dragging the handles
   const handleMouseDown = (handle: 'left' | 'right') => {
     return (e: React.MouseEvent) => {
-      document.body.style.cursor = 'grabbing'; // Change cursor while dragging
-
       const startX = e.clientX; // Initial mouse position
       const startLeft = leftHandle; // Starting value of the left handle
       const startRight = rightHandle; // Starting value of the right handle
@@ -130,7 +128,7 @@ const Range = ({ min, max, values }: RangeProps) => {
       const onMouseMove = (moveEvent: MouseEvent) => {
         const deltaX = moveEvent.clientX - startX; // Difference in mouse position
         const rangeWidth = rangeRef.current?.offsetWidth || 100; // Width of the range container
-        const deltaValue = (deltaX / rangeWidth) * (max - min); // Convert to range value
+        const deltaValue = (deltaX / rangeWidth) * (max - min); // Convert mouse movement to range value
 
         if (handle === 'left') {
           // Update left handle position
@@ -157,7 +155,6 @@ const Range = ({ min, max, values }: RangeProps) => {
 
       // Remove event listeners when dragging ends
       const onMouseUp = () => {
-        document.body.style.cursor = 'grab'; // Reset cursor
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
       };
