@@ -20,7 +20,6 @@ const Header = () => {
 
       {/* Centered SVG */}
       <div className={styles.logo}>
-        {/* Usamos la ruta del archivo SVG dentro de public */}
         <img
           src="/assets/svg/mango-logo.svg"
           alt="Mango Logo"
