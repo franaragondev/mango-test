@@ -55,7 +55,7 @@ To set up this project locally, follow these steps:
 
    ```bash
    git clone <repository-url>
-   cd react-meetup
+   cd mango-test
 
 2. Install dependencies:
 
