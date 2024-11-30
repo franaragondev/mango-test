@@ -282,8 +282,13 @@ const Range = ({ min, max, values }: RangeProps) => {
       />
 
       {/* Range handles */}
-      <Handle position={leftPercentage} onMouseDown={handleMouseDown('left')} />
       <Handle
+        position={leftPercentage}
+        onMouseDown={handleMouseDown('left')}
+        data-testid="left-handle"
+      />
+      <Handle
+        data-testid="right-handle"
         position={rightPercentage}
         onMouseDown={handleMouseDown('right')}
       />

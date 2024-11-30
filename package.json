@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-    "type": "module",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -13,9 +12,6 @@
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,scss,md}' --ignore-path .gitignore",
         "check-format": "prettier --check './**/*.{js,jsx,ts,tsx,css,scss,md}' --ignore-path .gitignore"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
     "dependencies": {
         "@types/node": "^22.10.0",
         "@types/react": "^18.3.12",

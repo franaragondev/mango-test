@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",  // Extends the main tsconfig file
+  "compilerOptions": {
+    "jsx": "react-jsx"  // Force this configuration only for Jest
+  },
+  "include": [
+    "components/**/*.tsx",
+    "tests/**/*.tsx"
+  ]
+}
