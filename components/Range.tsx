@@ -45,15 +45,18 @@ const Handle = styled.div<{ position: number }>`
   }
 `;
 
-const ValueLabel = styled.span<{ position: number }>`
+const ValueLabel = styled.span<{ isLeft: boolean }>`
   position: absolute;
-  left: ${({ position }) => `${position}%`};
   top: -1.5rem;
   font-size: 0.8rem;
   color: black;
-  transform: translateX(-50%);
   user-select: none;
   cursor: pointer;
+
+  ${({ isLeft }) =>
+    isLeft
+      ? `left: 0; transform: translateX(0%);`
+      : `right: 0; transform: translateX(0%);`}
 `;
 
 const FixedValueLabel = styled.span<{ position: number }>`
@@ -234,16 +237,12 @@ const Range = ({ min, max, values }: RangeProps) => {
               onBlur={() => handleValueBlur('left')}
               style={{
                 position: 'absolute',
-                left: `${leftPercentage}%`,
                 top: '-1.5rem',
                 fontSize: '0.8rem',
               }}
             />
           ) : (
-            <ValueLabel
-              position={leftPercentage}
-              onClick={() => handleLabelClick('left')}
-            >
+            <ValueLabel isLeft={true} onClick={() => handleLabelClick('left')}>
               {formatNumber(leftHandle)}
             </ValueLabel>
           )}
@@ -256,14 +255,14 @@ const Range = ({ min, max, values }: RangeProps) => {
               onBlur={() => handleValueBlur('right')}
               style={{
                 position: 'absolute',
-                left: `${rightPercentage}%`,
+                right: `0`,
                 top: '-1.5rem',
                 fontSize: '0.8rem',
               }}
             />
           ) : (
             <ValueLabel
-              position={rightPercentage}
+              isLeft={false}
               onClick={() => handleLabelClick('right')}
             >
               {formatNumber(rightHandle)}
