@@ -45,15 +45,18 @@ const Handle = styled.div<{ position: number }>`
   }
 `;
 
-const ValueLabel = styled.span<{ position: number }>`
+const ValueLabel = styled.span<{ isLeft: boolean }>`
   position: absolute;
-  left: ${({ position }) => `${position}%`};
   top: -1.5rem;
   font-size: 0.8rem;
   color: black;
-  transform: translateX(-50%);
   user-select: none;
   cursor: pointer;
+
+  ${({ isLeft }) =>
+    isLeft
+      ? `left: 0; transform: translateX(0%);`
+      : `right: 0; transform: translateX(0%);`}
 `;
 
 const FixedValueLabel = styled.span<{ position: number }>`
@@ -119,8 +122,6 @@ const Range = ({ min, max, values }: RangeProps) => {
   // Handle mouse down for dragging the handles
   const handleMouseDown = (handle: 'left' | 'right') => {
     return (e: React.MouseEvent) => {
-      document.body.style.cursor = 'grabbing'; // Change cursor while dragging
-
       const startX = e.clientX; // Initial mouse position
       const startLeft = leftHandle; // Starting value of the left handle
       const startRight = rightHandle; // Starting value of the right handle
@@ -130,7 +131,7 @@ const Range = ({ min, max, values }: RangeProps) => {
       const onMouseMove = (moveEvent: MouseEvent) => {
         const deltaX = moveEvent.clientX - startX; // Difference in mouse position
         const rangeWidth = rangeRef.current?.offsetWidth || 100; // Width of the range container
-        const deltaValue = (deltaX / rangeWidth) * (max - min); // Convert to range value
+        const deltaValue = (deltaX / rangeWidth) * (max - min); // Convert mouse movement to range value
 
         if (handle === 'left') {
           // Update left handle position
@@ -157,7 +158,6 @@ const Range = ({ min, max, values }: RangeProps) => {
 
       // Remove event listeners when dragging ends
       const onMouseUp = () => {
-        document.body.style.cursor = 'grab'; // Reset cursor
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
       };
@@ -237,16 +237,12 @@ const Range = ({ min, max, values }: RangeProps) => {
               onBlur={() => handleValueBlur('left')}
               style={{
                 position: 'absolute',
-                left: `${leftPercentage}%`,
                 top: '-1.5rem',
                 fontSize: '0.8rem',
               }}
             />
           ) : (
-            <ValueLabel
-              position={leftPercentage}
-              onClick={() => handleLabelClick('left')}
-            >
+            <ValueLabel isLeft={true} onClick={() => handleLabelClick('left')}>
               {formatNumber(leftHandle)}
             </ValueLabel>
           )}
@@ -259,14 +255,14 @@ const Range = ({ min, max, values }: RangeProps) => {
               onBlur={() => handleValueBlur('right')}
               style={{
                 position: 'absolute',
-                left: `${rightPercentage}%`,
+                right: `0`,
                 top: '-1.5rem',
                 fontSize: '0.8rem',
               }}
             />
           ) : (
             <ValueLabel
-              position={rightPercentage}
+              isLeft={false}
               onClick={() => handleLabelClick('right')}
             >
               {formatNumber(rightHandle)}
